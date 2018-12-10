@@ -22,8 +22,8 @@ android {
 }
 
 MobSDK {
-    appKey "替换为mob官方申请的appkey"
-    appSecret "替换为mob官方申请的appkey对应的appSecret"
+    appKey "293274f3f0c18"
+    appSecret "46e7907d86139df72c094b5c91f639a6"
     MobLink {}
 }
 

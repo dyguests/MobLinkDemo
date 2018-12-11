@@ -16,7 +16,7 @@ android {
 
     signingConfigs {
         config {
-            storeFile file("moblinkdemo.keystore")
+            storeFile file("./../moblinkdemo.keystore")
             storePassword "123456"
             keyAlias "app"
             keyPassword "123456"
@@ -41,8 +41,8 @@ MobSDK {
     appKey "29393e59c3072"
     appSecret "87e3aff22b48c9e10f6b57a3d14ff57c"
     MobLink {
-        uriScheme "您后台配置的scheme"
-        appLinkHost "您后台开启AppLink时生成的Host"
+        uriScheme "applink://a2au.t4m.cn"
+        appLinkHost "a2au.t4m.cn"
     }
 }
 

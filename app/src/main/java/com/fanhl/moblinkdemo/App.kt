@@ -20,18 +20,18 @@ class App : Application() {
         MobLink.setRestoreSceneListener(object : RestoreSceneListener {
             override fun completeRestore(scene: Scene?) {
                 Log.d(TAG, "completeRestore: ")
-                Toast.makeText(this@App, "completeRestore", Toast.LENGTH_LONG).show()
+//                Toast.makeText(this@App, "completeRestore", Toast.LENGTH_LONG).show()
             }
 
             override fun willRestoreScene(scene: Scene?): Class<out Activity> {
                 Log.d(TAG, "willRestoreScene: ")
-                Toast.makeText(this@App, "willRestoreScene", Toast.LENGTH_LONG).show()
+//                Toast.makeText(this@App, "willRestoreScene", Toast.LENGTH_LONG).show()
                 return MainActivity::class.java
             }
 
             override fun notFoundScene(scene: Scene?) {
                 Log.d(TAG, "notFoundScene: ")
-                Toast.makeText(this@App, "notFoundScene", Toast.LENGTH_LONG).show()
+//                Toast.makeText(this@App, "notFoundScene", Toast.LENGTH_LONG).show()
             }
         })
     }

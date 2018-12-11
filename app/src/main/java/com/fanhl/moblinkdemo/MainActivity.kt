@@ -1,10 +1,14 @@
 package com.fanhl.moblinkdemo
 
+import android.app.Application
+import android.arch.lifecycle.AndroidViewModel
+import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProvider
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import android.widget.Toast
 import com.mob.moblink.ActionListener
 import com.mob.moblink.MobLink
 import com.mob.moblink.Scene
@@ -14,10 +18,17 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), SceneRestorable {
 
+    private val viewModel by lazy { ViewModelProvider.AndroidViewModelFactory.getInstance(application).create(ViewModel::class.java) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        viewModel.apply {
+            info.observe(this@MainActivity, Observer {
+                et_info.setText(it)
+            })
+        }
         btn_create.setOnClickListener { create() }
     }
 
@@ -32,8 +43,7 @@ class MainActivity : AppCompatActivity(), SceneRestorable {
 
     override fun onReturnSceneData(scene: Scene) {
         val info = scene.params["info"] as? String ?: return
-        et_info.postDelayed({ et_info.setText(info) }, 2000)
-        Toast.makeText(this, "info:$info", Toast.LENGTH_LONG).show()
+        viewModel.info.value = info
     }
 
     private fun create() {
@@ -62,5 +72,9 @@ class MainActivity : AppCompatActivity(), SceneRestorable {
 
     companion object {
         private val TAG = MainActivity::class.java.simpleName
+    }
+
+    class ViewModel(app: Application) : AndroidViewModel(app) {
+        var info = MutableLiveData<String>()
     }
 }

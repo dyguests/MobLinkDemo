@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity(), SceneRestorable {
 
     override fun onReturnSceneData(scene: Scene) {
         val info = scene.params["info"] as? String ?: return
-        Toast.makeText(this, "info:$info", Toast.LENGTH_LONG).show()
+        et_info.setText(info)
     }
 
     private fun create() {
